@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Goal 3 – Unit 1: Lifestyles | Interactive English Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+        .pulse-subtle {
+            animation: pulse-subtle 3s infinite ease-in-out;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.015); }
+        }
+        .card-hover {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.08);
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen selection:bg-indigo-500 selection:text-white">
+
+    <header class="bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="app.goHome()">
+                <div class="bg-indigo-600 text-white font-black px-3.5 py-2 rounded-xl text-sm shadow-md tracking-wider">SG3 • U1</div>
+                <div>
+                    <h1 class="font-black text-lg sm:text-xl text-slate-900 tracking-tight leading-tight">Super Goal 3: Lifestyles</h1>
+                    <p class="text-xs text-indigo-600 font-bold">Interactive Learning Platform</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <div id="stats-badge" class="hidden sm:flex items-center space-x-3 bg-slate-50 px-3.5 py-1.5 rounded-2xl border border-slate-200 text-xs font-bold">
+                    <div class="flex items-center text-amber-500 space-x-1" title="Stars Earned">
+                        <span>⭐</span> <span id="stat-stars">0</span>
+                    </div>
+                    <div class="text-slate-300">|</div>
+                    <div class="flex items-center text-indigo-600 space-x-1" title="Total Points">
+                        <span>🏆</span> <span id="stat-score">0</span> pts
+                    </div>
+                </div>
+                <button onclick="app.goHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm transition flex items-center gap-1.5">
+                    <span>🏠</span> <span class="hidden xs:inline">Home</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-container" class="flex-grow max-w-6xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center items-center">
+        
+        <!-- 1. Welcome / Home Screen -->
+        <div id="screen-welcome" class="w-full max-w-3xl bg-white rounded-3xl shadow-xl border border-slate-100 p-8 sm:p-12 text-center space-y-6 pulse-subtle">
+            <div class="inline-flex bg-indigo-50 text-indigo-600 p-4 rounded-3xl text-4xl shadow-inner mb-2">
+                🌟
+            </div>
+            
+            <div class="space-y-2 py-3 border-y border-slate-100">
+                <span class="text-indigo-600 font-black text-xs uppercase tracking-widest block">إعداد وتقديم</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                    الدكتور محسن الكاشف
+                </h2>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="text-2xl sm:text-3xl font-black text-indigo-600 tracking-tight">Super Goal 3 – Unit 1: Lifestyles</h3>
+                <p class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto font-medium">
+                    Master 80 vocabulary items across 10 immersive levels, 50 unique mini-games, 120 rigorous grammar questions, flashcards, and smart review tracking.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-4">
+                <button onclick="app.showVocabularyHub()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-4 rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 text-base">
+                    <span>📚</span> Vocabulary (80 Words)
+                </button>
+                <button onclick="app.showGrammarHub()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold p-4 rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 text-base">
+                    <span>📖</span> Grammar Hub (4 Rules)
+                </button>
+                <button onclick="app.showFlashcardsHub()" class="bg-violet-600 hover:bg-violet-700 text-white font-bold p-4 rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 text-base">
+                    <span>🃏</span> Flashcards Deck
+                </button>
+                <button onclick="app.showReviewCenter()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold p-4 rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 text-base">
+                    <span>🔄</span> Review Center
+                </button>
+                <button onclick="app.showProgressDashboard()" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold p-4 rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2 text-base">
+                    <span>🏆</span> My Progress &amp; Badges
+                </button>
+                <button onclick="app.resetProgressPrompt()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold p-4 rounded-2xl transition flex items-center justify-center gap-2 text-sm">
+                    <span>⚙️️</span> Reset Progress
+                </button>
+            </div>
+        </div>
+
+        <!-- 2. Vocabulary Levels Dashboard -->
+        <div id="screen-vocab-dashboard" class="w-full hidden space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-6 rounded-3xl shadow-sm border border-slate-100 gap-4">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">Vocabulary Levels (1 to 10)</h2>
+                    <p class="text-slate-500 text-sm">Master 8 essential lifestyle words per level with integrated practice &amp; games.</p>
+                </div>
+                <button onclick="app.goHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-bold text-sm transition">
+                    ⬅ Back to Home
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4" id="vocab-levels-grid">
+                <!-- Dynamically populated levels -->
+            </div>
+        </div>
+
+        <!-- 3. Vocabulary Learn & Study Screen -->
+        <div id="screen-vocab-learn" class="w-full hidden space-y-6 max-w-2xl mx-auto">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.showVocabularyHub()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Levels
+                </button>
+                <h3 id="vocab-level-title" class="text-lg font-black text-indigo-600">Level X</h3>
+                <span id="vocab-counter" class="bg-indigo-50 text-indigo-700 font-bold px-3 py-1 rounded-lg text-sm">1 / 8</span>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 sm:p-10 text-center space-y-6">
+                <div class="space-y-4">
+                    <div class="text-4xl sm:text-5xl font-black text-slate-900" id="learn-word">Word</div>
+                    <div class="flex justify-center items-center gap-3">
+                        <span id="learn-pronunciation" class="text-indigo-600 font-bold bg-indigo-50 px-4 py-1.5 rounded-full text-sm">/pronunciation/</span>
+                        <button onclick="app.speakCurrentWord()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-full shadow transition text-sm font-bold flex items-center gap-1.5">
+                            🔊 Listen
+                        </button>
+                    </div>
+                    <div class="text-2xl font-black text-emerald-600" id="learn-meaning">Arabic Meaning</div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-slate-700 italic text-base font-medium" id="learn-example">
+                        "Example sentence..."
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
+                    <button onclick="app.prevVocabWord()" id="btn-prev-word" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-6 rounded-2xl transition disabled:opacity-40">
+                        Previous
+                    </button>
+                    <button onclick="app.nextVocabWord()" id="btn-next-word" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-2xl shadow-lg transition">
+                        Next Word ➡
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Level Games Hub -->
+        <div id="screen-games-hub" class="w-full hidden space-y-6">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.showVocabularyHub()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Levels
+                </button>
+                <h3 id="games-hub-title" class="text-lg font-black text-indigo-600">Level Games Challenge</h3>
+                <span class="bg-amber-50 text-amber-700 font-bold px-3 py-1 rounded-lg text-sm">5 Interactive Games</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="games-list-container">
+                <!-- Dynamically populated 5 games -->
+            </div>
+        </div>
+
+        <!-- 5. Active Game Play Screen -->
+        <div id="screen-game-play" class="w-full hidden space-y-6 max-w-3xl mx-auto">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.openLevelGames(app.currentLevelId)" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Exit Game
+                </button>
+                <div class="text-center">
+                    <h3 id="active-game-title" class="text-base font-black text-slate-900">Game Name</h3>
+                    <span id="active-game-progress" class="text-xs text-slate-500 font-semibold">Question 1 of 5</span>
+                </div>
+                <div class="font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg text-sm">
+                    Score: <span id="active-game-score">0</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 space-y-6">
+                <div id="game-question-area" class="space-y-4">
+                    <!-- Dynamic question content -->
+                </div>
+                <div id="game-feedback-area" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+                <div class="flex justify-end pt-4">
+                    <button id="btn-submit-game" onclick="app.submitGameAnswer()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-2xl shadow-lg transition">
+                        Submit Answer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Level Complete / Report Screen -->
+        <div id="screen-level-complete" class="w-full hidden space-y-6 max-w-xl mx-auto text-center">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 space-y-6">
+                <div class="text-6xl animate-bounce">🏆</div>
+                <h2 class="text-3xl font-black text-slate-900">Level Completed!</h2>
+                <div class="grid grid-cols-3 gap-4 py-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div>
+                        <div class="text-slate-400 text-xs font-bold uppercase">Score</div>
+                        <div class="text-xl font-black text-indigo-600" id="complete-score">50 pts</div>
+                    </div>
+                    <div>
+                        <div class="text-slate-400 text-xs font-bold uppercase">Accuracy</div>
+                        <div class="text-xl font-black text-emerald-600" id="complete-accuracy">100%</div>
+                    </div>
+                    <div>
+                        <div class="text-slate-400 text-xs font-bold uppercase">Stars</div>
+                        <div class="text-xl font-black text-amber-500" id="complete-stars">⭐⭐⭐</div>
+                    </div>
+                </div>
+                <p class="text-slate-600 text-sm font-medium" id="complete-msg">Fantastic work mastering this level's vocabulary!</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 pt-2">
+                    <button onclick="app.showVocabularyHub()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3.5 px-6 rounded-2xl transition">
+                        Levels Dashboard
+                    </button>
+                    <button id="btn-next-level" onclick="app.startNextLevel()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-8 rounded-2xl shadow-lg transition">
+                        Next Level 🚀
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Grammar Hub Screen -->
+        <div id="screen-grammar-hub" class="w-full hidden space-y-6">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.goHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Home
+                </button>
+                <h3 class="text-xl font-black text-emerald-600">Grammar Rules Hub (Unit 1)</h3>
+                <span class="bg-emerald-50 text-emerald-700 font-bold px-3 py-1 rounded-lg text-sm">4 Comprehensive Rules</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="grammar-rules-container">
+                <!-- Dynamically populated grammar rules -->
+            </div>
+        </div>
+
+        <!-- 8. Grammar Lesson & Practice Screen -->
+        <div id="screen-grammar-practice" class="w-full hidden space-y-6 max-w-3xl mx-auto">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.showGrammarHub()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Grammar Hub
+                </button>
+                <div class="text-center">
+                    <h3 id="grammar-rule-name-header" class="text-base font-black text-slate-900">Grammar Rule</h3>
+                    <span id="grammar-q-progress" class="text-xs text-slate-500 font-semibold">Question 1 of 30</span>
+                </div>
+                <div class="font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-lg text-sm">
+                    Score: <span id="grammar-score">0</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 space-y-6">
+                <!-- Rule Lesson Banner -->
+                <div id="grammar-lesson-banner" class="bg-emerald-50 border border-emerald-200 p-5 rounded-2xl text-emerald-900 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h4 id="banner-rule-title" class="font-black text-lg text-emerald-900">Rule Name</h4>
+                        <span class="text-xs bg-white px-2.5 py-1 rounded-md shadow-sm font-bold text-emerald-700">Unit 1 Grammar</span>
+                    </div>
+                    <p id="banner-rule-desc" class="text-sm font-medium text-emerald-800">Explanation...</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-emerald-200 text-xs">
+                        <div><strong>Form:</strong> <span id="banner-rule-form">-</span></div>
+                        <div><strong>Usage:</strong> <span id="banner-rule-usage">-</span></div>
+                    </div>
+                </div>
+
+                <div id="grammar-question-area" class="space-y-4">
+                    <!-- Dynamic question -->
+                </div>
+                <div id="grammar-feedback-area" class="hidden p-4 rounded-2xl font-medium text-sm"></div>
+                <div class="flex justify-end pt-4">
+                    <button id="btn-submit-grammar" onclick="app.submitGrammarAnswer()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-2xl shadow-lg transition">
+                        Submit Answer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Grammar Complete Screen -->
+        <div id="screen-grammar-complete" class="w-full hidden space-y-6 max-w-xl mx-auto text-center">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 space-y-6">
+                <div class="text-6xl animate-bounce">🌟</div>
+                <h2 class="text-3xl font-black text-slate-900">Grammar Rule Mastered!</h2>
+                <div class="grid grid-cols-2 gap-4 py-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div>
+                        <div class="text-slate-400 text-xs font-bold uppercase">Correct Questions</div>
+                        <div class="text-xl font-black text-emerald-600" id="grammar-complete-correct">30 / 30</div>
+                    </div>
+                    <div>
+                        <div class="text-slate-400 text-xs font-bold uppercase">Points Earned</div>
+                        <div class="text-xl font-black text-indigo-600" id="grammar-complete-pts">300 pts</div>
+                    </div>
+                </div>
+                <p class="text-slate-600 text-sm font-medium">You have successfully completed 30 rigorous practice questions for this grammar rule.</p>
+                <div class="pt-2">
+                    <button onclick="app.showGrammarHub()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-8 rounded-2xl shadow-lg transition">
+                        Back to Grammar Hub
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. Flashcards Hub -->
+        <div id="screen-flashcards" class="w-full hidden space-y-6 max-w-xl mx-auto">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.goHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Home
+                </button>
+                <h3 class="text-lg font-black text-violet-600">Flashcards Deck (80 Words)</h3>
+                <span id="fc-counter" class="bg-violet-50 text-violet-700 font-bold px-3 py-1 rounded-lg text-sm">1 / 80</span>
+            </div>
+
+            <!-- 3D Flip Card -->
+            <div class="perspective-1000 w-full h-80 cursor-pointer" onclick="app.flipFlashcard()">
+                <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-3xl">
+                    <!-- Front -->
+                    <div class="absolute inset-0 w-full h-full bg-white border border-slate-100 rounded-3xl p-8 flex flex-col justify-between items-center text-center backface-hidden">
+                        <span class="text-xs font-bold bg-violet-50 text-violet-700 px-3 py-1 rounded-full">Front: English Word</span>
+                        <div class="space-y-2">
+                            <h2 class="text-4xl font-black text-slate-900" id="fc-word">Word</h2>
+                            <p class="text-indigo-600 font-semibold" id="fc-pronunciation">/pronunciation/</p>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Click card anywhere to flip 🔄</span>
+                    </div>
+                    <!-- Back -->
+                    <div class="absolute inset-0 w-full h-full bg-indigo-900 text-white border border-indigo-800 rounded-3xl p-8 flex flex-col justify-between items-center text-center backface-hidden rotate-y-180">
+                        <span class="text-xs font-bold bg-indigo-800 text-indigo-200 px-3 py-1 rounded-full">Back: Meaning &amp; Example</span>
+                        <div class="space-y-3">
+                            <h2 class="text-3xl font-black text-emerald-400" id="fc-meaning">Meaning</h2>
+                            <p class="text-indigo-200 italic text-sm" id="fc-example">"Example sentence..."</p>
+                        </div>
+                        <button onclick="event.stopPropagation(); app.speakFlashcardWord()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full font-bold text-xs">
+                            🔊 Listen Pronunciation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-2">
+                <button onclick="app.prevFlashcard()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-6 rounded-2xl transition">
+                    ⬅ Previous
+                </button>
+                <button onclick="app.flipFlashcard()" class="bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-6 rounded-2xl shadow transition">
+                    Flip Card 🔄
+                </button>
+                <button onclick="app.nextFlashcard()" class="bg-violet-600 hover:bg-violet-700 text-white font-bold py-3 px-6 rounded-2xl shadow transition">
+                    Next ➡
+                </button>
+            </div>
+        </div>
+
+        <!-- 11. Review Center -->
+        <div id="screen-review-center" class="w-full hidden space-y-6 max-w-3xl mx-auto">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.goHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Home
+                </button>
+                <h3 class="text-lg font-black text-amber-600">Smart Review Center</h3>
+                <span class="bg-amber-50 text-amber-700 font-bold px-3 py-1 rounded-lg text-sm">Mistakes Tracker</span>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h4 class="font-black text-lg text-slate-900 mb-1">Items Needing Review</h4>
+                    <p class="text-slate-500 text-sm">Practice questions generated dynamically based on your previous incorrect answers without repetition.</p>
+                </div>
+
+                <div id="review-content-area" class="space-y-4">
+                    <!-- Dynamically populated or empty state -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 12. Progress & Badges Dashboard -->
+        <div id="screen-progress" class="w-full hidden space-y-6 max-w-3xl mx-auto">
+            <div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                <button onclick="app.goHome()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-2 rounded-xl text-sm transition">
+                    ⬅ Home
+                </button>
+                <h3 class="text-lg font-black text-cyan-600">My Progress &amp; Badges</h3>
+                <span class="bg-cyan-50 text-cyan-700 font-bold px-3 py-1 rounded-lg text-sm">Achievement Report</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center space-y-2">
+                    <div class="text-3xl">⭐</div>
+                    <div class="text-slate-400 text-xs font-bold uppercase">Total Stars</div>
+                    <div class="text-3xl font-black text-amber-500" id="report-stars">0</div>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center space-y-2">
+                    <div class="text-3xl">🏆</div>
+                    <div class="text-slate-400 text-xs font-bold uppercase">Total Points</div>
+                    <div class="text-3xl font-black text-indigo-600" id="report-points">0</div>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center space-y-2">
+                    <div class="text-3xl">🎯</div>
+                    <div class="text-slate-400 text-xs font-bold uppercase">Levels Completed</div>
+                    <div class="text-3xl font-black text-emerald-600" id="report-levels">0 / 10</div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-6 sm:p-8 space-y-6">
+                <h4 class="font-black text-lg text-slate-900">Earned Badges</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="badges-container">
+                    <!-- Badges rendered dynamically -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-800 text-sm sm:text-base font-black tracking-wide">
+                إعداد وتقديم الدكتور محسن الكاشف
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        /* 1. Vocabulary Database: 80 Words divided into 10 Levels (8 words each) */
+        const vocabularyLevels = [
+            {
+                levelId: 1,
+                title: "Level 1: Core Lifestyles & Habits",
+                words: [
+                    { word: "lifestyle", pronunciation: "/ˈlaɪfˌstaɪl/", meaning: "أسلوب حياة", example: "He has a healthy lifestyle with daily exercise." },
+                    { word: "habit", pronunciation: "/ˈhæbɪt/", meaning: "عادة", example: "Reading before sleep is a good habit." },
+                    { word: "routine", pronunciation: "/ruˈtin/", meaning: "روتين يومي", example: "My morning routine includes jogging and coffee." },
+                    { word: "frequency", pronunciation: "/ˈfriːkwənsi/", meaning: "تكرار / معدل حدوث", example: "Check the frequency of your workouts." },
+                    { word: "fitness", pronunciation: "/ˈfɪtnəs/", meaning: "اللياقة البدنية", example: "Swimming is wonderful for cardiovascular fitness." },
+                    { word: "work out", pronunciation: "/wɜrk aʊt/", meaning: "يتمرن رياضياً", example: "I work out at the gym three times a week." },
+                    { word: "gym", pronunciation: "/dʒɪm/", meaning: "صالة الألعاب الرياضية", example: "She goes to the gym after work." },
+                    { word: "physical exercise", pronunciation: "/ˈfɪzɪkəl ˈɛksərˌsaɪz/", meaning: "تمرين بدني", example: "Regular physical exercise keeps us strong." }
+                ]
+            },
+            {
+                levelId: 2,
+                title: "Level 2: Mental & Physical Activities",
+                words: [
+                    { word: "rock climbing", pronunciation: "/rɑk ˈklaɪmɪŋ/", meaning: "تسلق الصخور", example: "Rock climbing requires immense strength and focus." },
+                    { word: "puzzle", pronunciation: "/ˈpʌzəl/", meaning: "لغز / أحجية", example: "Solving a jigsaw puzzle sharpens the mind." },
+                    { word: "Sudoku", pronunciation: "/suːˈdoʊkuː/", meaning: "لعبة سودوكو للأرقام", example: "My grandfather loves playing Sudoku every morning." },
+                    { word: "video games", pronunciation: "/ˈvɪdioʊ ɡeɪmz/", meaning: "ألعاب الفيديو", example: "Teenagers enjoy playing video games on weekends." },
+                    { word: "health food", pronunciation: "/hɛlθ fuːd/", meaning: "طعام صحي", example: "Organic vegetables are considered health food." },
+                    { word: "fanatic", pronunciation: "/fəˈnætɪk/", meaning: "مهووس بشيء / متعصب", example: "He is a football fanatic who watches every match." },
+                    { word: "vegetarian", pronunciation: "/ˌvɛdʒəˈtɛriən/", meaning: "نباتي (لا يأكل اللحوم)", example: "Vegetarians eat plenty of grains and vegetables." },
+                    { word: "herbal tea", pronunciation: "/ˈhɜrbəl tiː/", meaning: "شاي أعشاب", example: "She drinks warm herbal tea before bedtime." }
+                ]
+            },
+            {
+                levelId: 3,
+                title: "Level 3: Daily Habits & Technology",
+                words: [
+                    { word: "devoted", pronunciation: "/dɪˈvoʊtɪd/", meaning: "مُتفانٍ / مخلص", example: "He is a devoted employee who arrives early." },
+                    { word: "employee", pronunciation: "/ɪmˈplɔɪi/", meaning: "موظف", example: "The company rewarded its best employee." },
+                    { word: "vacation", pronunciation: /veɪˈkeɪʃən/, meaning: "عطلة / إجازة", example: "We take a family vacation every summer." },
+                    { word: "overdo", pronunciation: "/ˌoʊvərˈduː/", meaning: "يبالغ في الشيء / يجهد نفسه", example: "Do not overdo your workouts to avoid injury." },
+                    { word: "exercise freak", pronunciation: "/ˈɛksərˌsaɪz friːk/", meaning: "مهووس بالتمارين الرياضية", example: "He is an exercise freak who trains twice a day." },
+                    { word: "internet addict", pronunciation: "/ˈɪntərnɛt ˈædɪkt/", meaning: "مدمن الإنترنت", example: "Spending hours online can turn someone into an internet addict." },
+                    { word: "smartphone", pronunciation: "/ˈsmɑrtˌfoʊn/", meaning: "هاتف ذكي", example: "Almost everyone carries a smartphone nowadays." },
+                    { word: "access", pronunciation: "/ˈæksɛs/", meaning: "وصول / حق الدخول", example: "Students have free access to the library internet." }
+                ]
+            },
+            {
+                levelId: 4,
+                title: "Level 4: Responsibilities & Nutrition",
+                words: [
+                    { word: "chores", pronunciation: "/tʃɔrz/", meaning: "أعمال منزلية روتينية", example: "Doing household chores helps share the family load." },
+                    { word: "turn off", pronunciation: "/tɜrn ɔf/", meaning: "يُطفئ (جهازاً أو إضاءة)", example: "Please turn off the lights when you leave." },
+                    { word: "cell phone", pronunciation: "/sɛl foʊn/", meaning: "هاتف محمول", example: "Turn off your cell phone during the lesson." },
+                    { word: "homework", pronunciation: "/ˈhoʊmˌwɜrk/", meaning: "واجب منزلي", example: "I finish my homework before watching television." },
+                    { word: "shopping", pronunciation: "/ˈʃɑpɪŋ/", meaning: "التسوق", example: "Mother goes grocery shopping on Thursdays." },
+                    { word: "diet", pronunciation: "/ˈdaɪɪt/", meaning: "نظام غذائي", example: "A balanced diet includes proteins, grains, and fruits." },
+                    { word: "healthy", pronunciation: "/ˈhɛlθi/", meaning: "صحي", example: "Eating apples and oranges keeps you healthy." },
+                    { word: "junk food", pronunciation: "/dʒʌŋk fuːd/", meaning: "طعام غير صحي / وجبات سريعة", example: "Eating too much junk food leads to weight gain." }
+                ]
+            },
+            {
+                levelId: 5,
+                title: "Level 5: Food Groups & Lifestyle",
+                words: [
+                    { word: "vegetables", pronunciation: "/ˈvɛdʒtəbəlz/", meaning: "خضروات", example: "Green vegetables are essential for daily vitamins." },
+                    { word: "fruit", pronunciation: "/fruːt/", meaning: "فاكهة", example: "Fresh fruit provides natural energy and fiber." },
+                    { word: "fried food", pronunciation: "/fraɪd fuːd/", meaning: "طعام مقلي", example: "Avoid oily fried food for a healthier heart." },
+                    { word: "rice", pronunciation: "/raɪs/", meaning: "أرز", example: "Rice is a staple grain in many countries." },
+                    { word: "noodles", pronunciation: "/ˈnuːdəlz/", meaning: "شعيرية / نودلز", example: "Warm noodle soup is comforting on cold days." },
+                    { word: "protein", pronunciation: "/ˈproʊtiːn/", meaning: "بروتين", example: "Chicken and fish are excellent sources of protein." },
+                    { word: "grains", pronunciation: "/ɡreɪnz/", meaning: "حبوب كاملة", example: "Whole grains are important for a nutritious diet." },
+                    { word: "sleep", pronunciation: "/sliːp/", meaning: "نوم", example: "Adults need eight hours of quality sleep nightly." }
+                ]
+            },
+            {
+                levelId: 6,
+                title: "Level 6: Academic & Research",
+                words: [
+                    { word: "test scores", pronunciation: "/tɛst skɔrz/", meaning: "درجات الاختبارات", example: "Good study habits lead to higher test scores." },
+                    { word: "majority", pronunciation: "/məˈdʒɔrəti/", meaning: "الأغلبية", example: "The majority of students passed the English exam." },
+                    { word: "college", pronunciation: "/ˈkɑlɪdʒ/", meaning: "كلية / جامعة", example: "He studies engineering at college." },
+                    { word: "research", pronunciation: "/ˈriːˌsɜrtʃ/", meaning: "بحث علمي", example: "Scientists conduct research on human sleeping habits." },
+                    { word: "suffer", pronunciation: "/ˈsʌfər/", meaning: "يُعاني", example: "People who lack sleep suffer from fatigue." },
+                    { word: "improve", pronunciation: "/ɪmˈpruːv/", meaning: "يُحسن / يتطور", example: "Practice helps improve your English fluency." },
+                    { word: "pastime", pronunciation: "/ˈpæsˌtaɪm/", meaning: "هواية / وقت فراغ ممتع", example: "Reading historical novels is her favorite pastime." },
+                    { word: "survey", pronunciation: "/ˈsɜrveɪ/", meaning: "استطلاع رأي / استبيان", example: "We conducted a class survey on lifestyle habits." }
+                ]
+            },
+            {
+                levelId: 7,
+                title: "Level 7: Modern Communication",
+                words: [
+                    { word: "obsessed", pronunciation: "/əbˈsɛst/", meaning: "مهووس بشيء بشدة", example: "She is obsessed with checking her social media." },
+                    { word: "communicate", pronunciation: "/kəˈmyunɪˌkeɪt/", meaning: "يتواصل", example: "People communicate worldwide through smartphones." },
+                    { word: "social media", pronunciation: "/ˈsoʊʃəl ˈmidiə/", meaning: "وسائل التواصل الاجتماعي", example: "Social media connects friends across continents." },
+                    { word: "regularly", pronunciation: "/ˈrɛɡjələrli/", meaning: "بانتظام", example: "Exercising regularly strengthens your heart." },
+                    { word: "frequently", pronunciation: "/ˈfriːkwəntli/", meaning: "في كثير من الأحيان", example: "He frequently checks his phone messages." },
+                    { word: "normally", pronunciation: "/ˈnɔrməli/", meaning: "عادة / بشكل طبيعي", example: "I normally wake up at six in the morning." },
+                    { word: "generally", pronunciation: "/ˈdʒɛnərəli/", meaning: "بشكل عام", example: "Generally, students enjoy interactive games." },
+                    { word: "usually", pronunciation: "/ˈjuːʒuəli/", meaning: "غالباً", example: "She usually eats cereal for breakfast." }
+                ]
+            },
+            {
+                levelId: 8,
+                title: "Level 8: Frequency Adverbs & Expressions",
+                words: [
+                    { word: "sometimes", pronunciation: "/ˈsʌmˌtaɪmz/", meaning: "أحياناً", example: "Sometimes we study English in the garden." },
+                    { word: "occasionally", pronunciation: "/əˈkeɪʒənəli/", meaning: "من حين لآخر", example: "We occasionally visit our grandparents on weekends." },
+                    { word: "seldom", pronunciation: "/ˈsɛldəm/", meaning: "نادراً", example: "He seldom eats sweets or junk food." },
+                    { word: "rarely", pronunciation: "/ˈrɛrli/", meaning: "بشكل نادر جداً", example: "She rarely misses her morning workout." },
+                    { word: "hardly ever", pronunciation: "/ˈhɑrdli ˈɛvər/", meaning: "بالكاد أبداً / نادراً جداً", example: "I hardly ever watch late-night television." },
+                    { word: "never", pronunciation: "/ˈnɛvər/", meaning: "أبداً", example: "Honest people never tell lies." },
+                    { word: "always", pronunciation: "/ˈɔlweɪz/", meaning: "دائماً", example: "Hard work always brings great results." },
+                    { word: "all the time", pronunciation: "/ɔl ðə taɪm/", meaning: "طوال الوقت", example: "He talks about video games all the time." }
+                ]
+            },
+            {
+                levelId: 9,
+                title: "Level 9: Time Expressions & Career",
+                words: [
+                    { word: "from time to time", pronunciation: "/frʌm taɪm tuː taɪm/", meaning: "من وقت لأخر", example: "From time to time, we enjoy a relaxing holiday." },
+                    { word: "once in a while", pronunciation: "/wʌns ɪn ə waɪl/", meaning: "بين الحين والآخر", example: "Once in a while, it is nice to sleep late." },
+                    { word: "now and then", pronunciation: "/naʊ ænd ðɛn/", meaning: "من حين لآخر", example: "We meet our old school friends now and then." },
+                    { word: "twice a week", pronunciation: "/twaɪs ə wiːk/", meaning: "مرتين في الأسبوع", example: "I play tennis twice a week." },
+                    { word: "once a month", pronunciation: "/wʌns ə mʌnθ/", meaning: "مرة في الشهر", example: "Our family visits the museum once a month." },
+                    { word: "addiction", pronunciation: "/əˈdɪkʃən/", meaning: "إدمان", example: "Smartphone addiction can disrupt sleeping habits." },
+                    { word: "career", pronunciation: "/kəˈrɪər/", meaning: "مهنة / حياة مهنية", example: "Education is the foundation of a successful career." },
+                    { word: "fashionable", pronunciation: "/ˈfæʃənəbəl/", meaning: "عصري / أنيق", example: "Wearing fashionable clothes is popular among youth." }
+                ]
+            },
+            {
+                levelId: 10,
+                title: "Level 10: Society, Volunteering & Success",
+                words: [
+                    { word: "media", pronunciation: "/ˈmidiə/", meaning: "وسائل الإعلام", example: "The media reports on lifestyle health trends." },
+                    { word: "background", pronunciation: "/ˈbækˌɡraʊnd/", meaning: "خلفية شخصية أو ثقافية", example: "Students come from diverse cultural backgrounds." },
+                    { word: "proud", pronunciation: "/praʊd/", meaning: "فخور", example: "Parents are proud of their children's achievements." },
+                    { word: "volunteer", pronunciation: "/ˌvɑlənˈtɪər/", meaning: "متطوع / يتطوع", example: "She volunteers at the local community hospital." },
+                    { word: "benefit", pronunciation: "/ˈbɛnəfɪt/", meaning: "فائدة / يستفيد", example: "Physical exercise brings enormous health benefits." },
+                    { word: "cooperation", pronunciation: "/koʊˌɑpəˈreɪʃən/", meaning: "تعاون", example: "Team success requires mutual cooperation." },
+                    { word: "keep in shape", pronunciation: "/kiːp ɪn ʃeɪp/", meaning: "يحافظ على لياقته البدنية", example: "Jogging daily helps you keep in shape." },
+                    { word: "profile", pronunciation: "/ˈproʊˌfaɪl/", meaning: "الملف الشخصي", example: "Update your social media profile with accurate info." }
+                ]
+            }
+        ];
+
+        /* 2. Grammar Rules Database (4 Rules, each with 30 rigorous unique questions) */
+        const grammarRules = [
+            {
+                ruleId: 1,
+                name: "Simple Present: Habitual Activities",
+                form: "Subject + Base Verb (-s / -es for He/She/It)",
+                usage: "Expressing daily routines, habits, facts, and general truths.",
+                desc: "Used for habits and routines. I/You/We/They take the base verb; He/She/It take verb +s/es. Questions and negation use do/does.",
+                examples: ["I work out at the gym.", "She eats healthy vegetables.", "They do not eat junk food."],
+                questions: Array.from({ length: 30 }, (_, i) => {
+                    const types = ['mcq', 'complete', 'correct', 'transform'];
+                    const t = types[i % types.length];
+                    if (t === 'mcq') {
+                        return {
+                            type: 'mcq',
+                            prompt: `Choose the correct verb form for: "My brother ____ tennis every Saturday." (${i+1}/30)`,
+                            options: ['play', 'plays', 'playing', 'played'],
+                            answer: 'plays',
+                            explanation: "Third-person singular 'My brother' (He) requires adding '-s' in Present Simple."
+                        };
+                    } else if (t === 'complete') {
+                        return {
+                            type: 'complete',
+                            prompt: `Complete with the correct auxiliary: "____ you normally eat breakfast?" (${i+1}/30)`,
+                            options: ['Do', 'Does', 'Are', 'Is'],
+                            answer: 'Do',
+                            explanation: "Subject 'you' takes auxiliary 'Do' to form questions in Present Simple."
+                        };
+                    } else if (t === 'correct') {
+                        return {
+                            type: 'correct',
+                            prompt: `Identify the correct sentence among the choices: (${i+1}/30)`,
+                            options: ['She likes herbal tea.', 'She like herbal tea.', 'She liking herbal tea.', 'She is like herbal tea.'],
+                            answer: 'She likes herbal tea.',
+                            explanation: "'She' requires 'likes' with an '-s' in affirmative Present Simple statements."
+                        };
+                    } else {
+                        return {
+                            type: 'mcq',
+                            prompt: `Choose the correct negative form: "He ____ like junk food." (${i+1}/30)`,
+                            options: ['does not', 'do not', 'is not', 'are not'],
+                            answer: 'does not',
+                            explanation: "Third-person singular negation uses 'does not' + base verb."
+                        };
+                    }
+                })
+            },
+            {
+                ruleId: 2,
+                name: "Adverbs & Expressions of Frequency",
+                form: "Subject + Frequency Adverb + Verb OR Subject + Be + Frequency Adverb",
+                usage: "Describing how often an action occurs (always, usually, rarely, twice a week, etc.).",
+                desc: "Adverbs of frequency (always, usually, sometimes, never) come before main verbs but after 'be'. End-of-sentence expressions include twice a week, once a month.",
+                examples: ["I usually eat breakfast.", "He is rarely late.", "We play tennis twice a week."],
+                questions: Array.from({ length: 30 }, (_, i) => {
+                    const types = ['mcq', 'complete', 'correct', 'placement'];
+                    const t = types[i % types.length];
+                    if (t === 'mcq') {
+                        return {
+                            type: 'mcq',
+                            prompt: `Choose the correct position: "She ____ early for her morning routine." (${i+1}/30)`,
+                            options: ['is always', 'always is', 'always', 'does always'],
+                            answer: 'is always',
+                            explanation: "Frequency adverbs come after the verb 'be' (is/am/are)."
+                        };
+                    } else if (t === 'complete') {
+                        return {
+                            type: 'complete',
+                            prompt: `Complete with frequency expression: "I work out at the gym ____ a week (Monday and Thursday)." (${i+1}/30)`,
+                            options: ['twice', 'once', 'three times', 'never'],
+                            answer: 'twice',
+                            explanation: "Two times a week is expressed as 'twice a week'."
+                        };
+                    } else if (t === 'correct') {
+                        return {
+                            type: 'correct',
+                            prompt: `Select the correct sentence placement: (${i+1}/30)`,
+                            options: ['They normally eat healthy food.', 'They eat normally healthy food.', 'Normally they is eating healthy food.', 'They eat healthy food normally of all.'],
+                            answer: 'They normally eat healthy food.',
+                            explanation: "Frequency adverbs like 'normally' precede the main verb ('eat')."
+                        };
+                    } else {
+                        return {
+                            type: 'mcq',
+                            prompt: `Choose the correct synonym for 'hardly ever': (${i+1}/30)`,
+                            options: ['rarely', 'always', 'frequently', 'usually'],
+                            answer: 'rarely',
+                            explanation: "'Hardly ever' means almost never, which is synonymous with 'rarely'."
+                        };
+                    }
+                })
+            },
+            {
+                ruleId: 3,
+                name: "Special Questions: How often / How much time / How long",
+                form: "How often / How much time / How long + auxiliary + subject + verb?",
+                usage: "Asking precise questions about frequency, time quantity, and duration.",
+                desc: "Use 'How often' for frequency, 'How much time' for time quantity, and 'How long' for duration of activities.",
+                examples: ["How often do you exercise?", "How much time do you spend studying?", "How long do you sleep?"],
+                questions: Array.from({ length: 30 }, (_, i) => {
+                    const types = ['mcq', 'complete', 'correct'];
+                    const t = types[i % types.length];
+                    if (t === 'mcq') {
+                        return {
+                            type: 'mcq',
+                            prompt: `Choose the correct question word: "____ do you work out? - Twice a week." (${i+1}/30)`,
+                            options: ['How often', 'How much time', 'How long', 'How many'],
+                            answer: 'How often',
+                            explanation: "When the answer specifies frequency ('twice a week'), the question starts with 'How often'."
+                        };
+                    } else if (t === 'complete') {
+                        return {
+                            type: 'complete',
+                            prompt: `Complete: "____ time do you spend on your smartphone daily?" (${i+1}/30)`,
+                            options: ['How much', 'How many', 'How long', 'How often'],
+                            answer: 'How much',
+                            explanation: "Uncountable noun 'time' is queried using 'How much time'."
+                        };
+                    } else {
+                        return {
+                            type: 'correct',
+                            prompt: `Identify the correct question for duration: (${i+1}/30)`,
+                            options: ['How long do you sleep at night?', 'How often do you sleep at night?', 'How much time do you sleep hours?', 'How many do you sleep duration?'],
+                            answer: 'How long do you sleep at night?',
+                            explanation: "'How long' is the correct interrogative phrase for asking about duration."
+                        };
+                    }
+                })
+            },
+            {
+                ruleId: 4,
+                name: "All / Both / Neither / None",
+                form: "Both/Neither (for 2) | All/None (for 3+)",
+                usage: "Quantifying pairs or groups of people and things, and positioning pronouns.",
+                desc: "Use Both and Neither for two items/people. Use All and None for three or more. Note positioning after auxiliary verbs (e.g., They are both teachers).",
+                examples: ["Both of them are students.", "Neither of them eats junk food.", "They are all athletes."],
+                questions: Array.from({ length: 30 }, (_, i) => {
+                    const types = ['mcq', 'complete', 'correct'];
+                    const t = types[i % types.length];
+                    if (t === 'mcq') {
+                        return {
+                            type: 'mcq',
+                            prompt: `Choose the correct quantifier for two people: "Ali and Sami are athletes. ____ of them play tennis." (${i+1}/30)`,
+                            options: ['Both', 'All', 'None', 'Any'],
+                            answer: 'Both',
+                            explanation: "When referring to exactly two individuals (Ali and Sami), use 'Both'."
+                        };
+                    } else if (t === 'complete') {
+                        return {
+                            type: 'complete',
+                            prompt: `Complete for three or more: "There are five students in the club, and ____ of them are studying." (${i+1}/30)`,
+                            options: ['all', 'both', 'neither', 'either'],
+                            answer: 'all',
+                            explanation: "For three or more items/people, use 'all'."
+                        };
+                    } else {
+                        return {
+                            type: 'correct',
+                            prompt: `Identify the correct positioning: (${i+1}/30)`,
+                            options: ['They are both employees.', 'Both they are employees.', 'They both are employees of all.', 'Are both they employees.'],
+                            answer: 'They are both employees.',
+                            explanation: "Quantifiers like 'both' come after the auxiliary or 'be' verb ('are both')."
+                        };
+                    }
+                })
+            }
+        ];
+
+        /* 3. Main Application Class */
+        class SuperGoalLearningApp {
+            constructor() {
+                this.stars = parseInt(localStorage.getItem('sg3_stars') || '0');
+                this.score = parseInt(localStorage.getItem('sg3_score') || '0');
+                this.unlockedLevel = parseInt(localStorage.getItem('sg3_unlocked') || '1');
+                this.completedLevels = JSON.parse(localStorage.getItem('sg3_completed') || '[]');
+                this.completedGrammar = JSON.parse(localStorage.getItem('sg3_grammar_done') || '[]');
+                this.mistakes = JSON.parse(localStorage.getItem('sg3_mistakes') || '[]');
+                
+                this.currentLevelId = 1;
+                this.vocabIndex = 0;
+                this.currentVocabList = [];
+                
+                this.activeGameId = null;
+                this.gameQuestions = [];
+                this.gameQIndex = 0;
+                this.gameCurrentScore = 0;
+                this.selectedGameOption = null;
+
+                this.activeGrammarRule = null;
+                this.grammarQuestions = [];
+                this.grammarQIndex = 0;
+                this.grammarScore = 0;
+                this.selectedGrammarOption = null;
+
+                this.flashcardIndex = 0;
+                this.isFlashcardFlipped = false;
+
+                this.updateGlobalStats();
+            }
+
+            updateGlobalStats() {
+                document.getElementById('stat-stars').textContent = this.stars;
+                document.getElementById('stat-score').textContent = this.score;
+                const badge = document.getElementById('stats-badge');
+                if (this.stars > 0 || this.score > 0) {
+                    badge.classList.remove('hidden');
+                    badge.classList.add('flex');
+                }
+            }
+
+            saveState() {
+                localStorage.setItem('sg3_stars', this.stars);
+                localStorage.setItem('sg3_score', this.score);
+                localStorage.setItem('sg3_unlocked', this.unlockedLevel);
+                localStorage.setItem('sg3_completed', JSON.stringify(this.completedLevels));
+                localStorage.setItem('sg3_grammar_done', JSON.stringify(this.completedGrammar));
+                localStorage.setItem('sg3_mistakes', JSON.stringify(this.mistakes));
+                this.updateGlobalStats();
+            }
+
+            hideAllScreens() {
+                const screens = [
+                    'screen-welcome', 'screen-vocab-dashboard', 'screen-vocab-learn',
+                    'screen-games-hub', 'screen-game-play', 'screen-level-complete',
+                    'screen-grammar-hub', 'screen-grammar-practice', 'screen-grammar-complete',
+                    'screen-flashcards', 'screen-review-center', 'screen-progress'
+                ];
+                screens.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+            }
+
+            goHome() {
+                this.hideAllScreens();
+                document.getElementById('screen-welcome').classList.remove('hidden');
+            }
+
+            showVocabularyHub() {
+                this.hideAllScreens();
+                document.getElementById('screen-vocab-dashboard').classList.remove('hidden');
+                this.renderVocabLevelsGrid();
+            }
+
+            renderVocabLevelsGrid() {
+                const container = document.getElementById('vocab-levels-grid');
+                container.innerHTML = '';
+                vocabularyLevels.forEach(lvl => {
+                    const isUnlocked = lvl.levelId <= this.unlockedLevel;
+                    const isCompleted = this.completedLevels.includes(lvl.levelId);
+                    const card = document.createElement('div');
+                    card.className = `p-5 rounded-3xl border flex flex-col justify-between card-hover ${
+                        isUnlocked ? 'bg-white border-slate-200 shadow-sm cursor-pointer' : 'bg-slate-50 border-slate-200 opacity-60 cursor-not-allowed'
+                    }`;
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-xs font-black px-2.5 py-1 rounded-xl ${isUnlocked ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-200 text-slate-600'}">Level ${lvl.levelId}</span>
+                                <span class="text-lg">${isCompleted ? '✅' : isUnlocked ? '🔓' : '🔒'}</span>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm mb-1">${lvl.title.split(':')[1]}</h4>
+                            <p class="text-xs text-slate-500 font-medium">8 Words &amp; 5 Mini-Games</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100">
+                            ${isUnlocked ? `
+                                <div class="flex gap-2">
+                                    <button onclick="app.startLevelLearn(${lvl.levelId})" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-3 rounded-xl text-xs transition">Learn</button>
+                                    <button onclick="app.openLevelGames(${lvl.levelId})" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-xl text-xs transition">Games</button>
+                                </div>
+                            ` : `<span class="text-xs font-bold text-slate-400 block text-center py-1">Complete Level ${lvl.levelId - 1}</span>`}
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            startLevelLearn(levelId) {
+                this.currentLevelId = levelId;
+                const lvlData = vocabularyLevels.find(l => l.levelId === levelId);
+                this.currentVocabList = lvlData.words;
+                this.vocabIndex = 0;
+
+                this.hideAllScreens();
+                document.getElementById('screen-vocab-learn').classList.remove('hidden');
+                document.getElementById('vocab-level-title').textContent = lvlData.title;
+                this.renderVocabCard();
+            }
+
+            renderVocabCard() {
+                const item = this.currentVocabList[this.vocabIndex];
+                document.getElementById('learn-word').textContent = item.word;
+                document.getElementById('learn-pronunciation').textContent = item.pronunciation;
+                document.getElementById('learn-meaning').textContent = item.meaning;
+                document.getElementById('learn-example').textContent = `"${item.example}"`;
+                document.getElementById('vocab-counter').textContent = `${this.vocabIndex + 1} / ${this.currentVocabList.length}`;
+                
+                document.getElementById('btn-prev-word').disabled = (this.vocabIndex === 0);
+                const nextBtn = document.getElementById('btn-next-word');
+                if (this.vocabIndex === this.currentVocabList.length - 1) {
+                    nextBtn.textContent = "Play Level Games 🎮";
+                } else {
+                    nextBtn.textContent = "Next Word ➡";
+                }
+            }
+
+            nextVocabWord() {
+                if (this.vocabIndex < this.currentVocabList.length - 1) {
+                    this.vocabIndex++;
+                    this.renderVocabCard();
+                } else {
+                    this.openLevelGames(this.currentLevelId);
+                }
+            }
+
+            prevVocabWord() {
+                if (this.vocabIndex > 0) {
+                    this.vocabIndex--;
+                    this.renderVocabCard();
+                }
+            }
+
+            speakCurrentWord() {
+                const item = this.currentVocabList[this.vocabIndex];
+                this.speakText(item.word);
+            }
+
+            speakText(txt) {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(txt);
+                    u.lang = 'en-US';
+                    window.speechSynthesis.speak(u);
+                }
+            }
+
+            openLevelGames(levelId) {
+                this.currentLevelId = levelId;
+                const lvlData = vocabularyLevels.find(l => l.levelId === levelId);
+                this.hideAllScreens();
+                document.getElementById('screen-games-hub').classList.remove('hidden');
+                document.getElementById('games-hub-title').textContent = `${lvlData.title.split(':')[1]} - Games`;
+
+                const container = document.getElementById('games-list-container');
+                container.innerHTML = '';
+                
+                const gamesInfo = [
+                    { id: 1, title: "Game 1: Match Words", desc: "Match vocabulary words with accurate Arabic meanings.", icon: "🔗" },
+                    { id: 2, title: "Game 2: Choose Correct Word", desc: "Select the precise word for contextual sentence situations.", icon: "🎯" },
+                    { id: 3, title: "Game 3: Arrange Words", desc: "Unscramble words to construct correct lifestyle sentences.", icon: "✍️" },
+                    { id: 4, title: "Game 4: Complete Sentence", desc: "Fill in the blank with the correct vocabulary term.", icon: "📝" },
+                    { id: 5, title: "Game 5: Listen & Identify", desc: "Listen to word pronunciations and select the correct option.", icon: "🔊" }
+                ];
+
+                gamesInfo.forEach(g => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-6 rounded-3xl border border-slate-200 shadow-sm card-hover flex flex-col justify-between";
+                    card.innerHTML = `
+                        <div>
+                            <div class="text-3xl mb-3">${g.icon}</div>
+                            <h4 class="font-black text-slate-900 text-base mb-1">${g.title}</h4>
+                            <p class="text-xs text-slate-500 font-medium mb-4">${g.desc}</p>
+                        </div>
+                        <button onclick="app.launchGame(${g.id})" class="w-full bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white font-bold py-2.5 px-4 rounded-xl text-xs transition">
+                            Play Game ▶
+                        </button>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            launchGame(gameId) {
+                this.activeGameId = gameId;
+                this.gameQIndex = 0;
+                this.gameCurrentScore = 0;
+                this.generateGameQuestions();
+
+                this.hideAllScreens();
+                document.getElementById('screen-game-play').classList.remove('hidden');
+                document.getElementById('active-game-title').textContent = `Level ${this.currentLevelId} - Game ${gameId}`;
+                this.renderGameQuestion();
+            }
+
+            generateGameQuestions() {
+                const words = vocabularyLevels.find(l => l.levelId === this.currentLevelId).words;
+                this.gameQuestions = [];
+
+                for (let i = 0; i < 5; i++) {
+                    const w = words[i % words.length];
+                    const distractor1 = words[(i + 2) % words.length].meaning;
+                    const distractor2 = words[(i + 4) % words.length].meaning;
+                    
+                    if (this.activeGameId === 1) { // Match Meaning
+                        const opts = [w.meaning, distractor1, distractor2].sort(() => Math.random() - 0.5);
+                        this.gameQuestions.push({
+                            prompt: `What is the Arabic meaning of "${w.word}"?`,
+                            options: opts,
+                            answer: w.meaning,
+                            explanation: `"${w.word}" means "${w.meaning}".`
+                        });
+                    } else if (this.activeGameId === 2) { // Choose Correct Word
+                        const opts = [w.word, words[(i+1)%words.length].word, words[(i+3)%words.length].word].sort(() => Math.random() - 0.5);
+                        this.gameQuestions.push({
+                            prompt: `Select the word that matches this context: "${w.example}"`,
+                            options: opts,
+                            answer: w.word,
+                            explanation: `The correct term is "${w.word}" (${w.meaning}).`
+                        });
+                    } else if (this.activeGameId === 3) { // Arrange Words
+                        const parts = w.example.replace(/[".,]/g, '').split(' ');
+                        const shuffled = [...parts].sort(() => Math.random() - 0.5);
+                        this.gameQuestions.push({
+                            prompt: `Unscramble to form correct sentence context related to "${w.word}":`,
+                            options: shuffled,
+                            isScramble: true,
+                            answer: parts.join(' '),
+                            explanation: `Correct sentence: "${w.example}"`
+                        });
+                    } else if (this.activeGameId === 4) { // Complete Sentence
+                        const masked = w.example.replace(new RegExp(w.word, 'gi'), '_____');
+                        const opts = [w.word, words[(i+2)%words.length].word, words[(i+1)%words.length].word].sort(() => Math.random() - 0.5);
+                        this.gameQuestions.push({
+                            prompt: `Complete the sentence: ${masked}`,
+                            options: opts,
+                            answer: w.word,
+                            explanation: `The missing word is "${w.word}".`
+                        });
+                    } else { // Listen & Identify
+                        const opts = [w.word, words[(i+1)%words.length].word, words[(i+2)%words.length].word].sort(() => Math.random() - 0.5);
+                        this.gameQuestions.push({
+                            prompt: `Listen to the pronunciation and identify the correct word for meaning: "${w.meaning}"`,
+                            options: opts,
+                            answer: w.word,
+                            audioWord: w.word,
+                            explanation: `The correct word is "${w.word}".`
+                        });
+                    }
+                }
+            }
+
+            renderGameQuestion() {
+                const q = this.gameQuestions[this.gameQIndex];
+                document.getElementById('active-game-progress').textContent = `Question ${this.gameQIndex + 1} of 5`;
+                document.getElementById('active-game-score').textContent = this.gameCurrentScore;
+                
+                const area = document.getElementById('game-question-area');
+                if (q.audioWord) {
+                    this.speakText(q.audioWord);
+                }
+
+                area.innerHTML = `
+                    <div class="text-lg font-black text-slate-900 mb-4">${q.prompt}</div>
+                    ${q.audioWord ? `<button onclick="app.speakText('${q.audioWord}')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold px-4 py-2 rounded-xl text-xs mb-4">🔊 Replay Audio</button>` : ''}
+                    <div class="space-y-3" id="game-options-list">
+                        ${q.options.map(opt => `
+                            <button onclick="app.selectGameOption(this, '${opt.replace(/'/g, "\\'")}')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-indigo-600 hover:bg-indigo-50 font-medium text-slate-700 transition">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                document.getElementById('game-feedback-area').classList.add('hidden');
+                document.getElementById('btn-submit-game').classList.remove('hidden');
+                this.selectedGameOption = null;
+            }
+
+            selectGameOption(btn, val) {
+                document.querySelectorAll('#game-options-list button').forEach(b => {
+                    b.classList.remove('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-600');
+                });
+                btn.classList.add('border-indigo-600', 'bg-indigo-50', 'ring-2', 'ring-indigo-600');
+                this.selectedGameOption = val;
+            }
+
+            submitGameAnswer() {
+                if (!this.selectedGameOption) {
+                    this.showModalAlert("Please select an option first!");
+                    return;
+                }
+                const q = this.gameQuestions[this.gameQIndex];
+                const feedback = document.getElementById('game-feedback-area');
+                feedback.classList.remove('hidden');
+                
+                const isCorrect = (this.selectedGameOption === q.answer);
+                if (isCorrect) {
+                    this.gameCurrentScore += 10;
+                    feedback.className = "p-4 rounded-2xl font-medium text-sm bg-emerald-50 text-emerald-800 border border-emerald-200";
+                    feedback.innerHTML = `✅ Correct! ${q.explanation}`;
+                } else {
+                    feedback.className = "p-4 rounded-2xl font-medium text-sm bg-rose-50 text-rose-800 border border-rose-200";
+                    feedback.innerHTML = `❌ Incorrect. Correct answer: "${q.answer}". ${q.explanation}`;
+                    this.mistakes.push({ type: 'vocab', text: q.prompt, answer: q.answer });
+                }
+
+                document.getElementById('btn-submit-game').classList.add('hidden');
+                
+                setTimeout(() => {
+                    if (this.gameQIndex < this.gameQuestions.length - 1) {
+                        this.gameQIndex++;
+                        this.renderGameQuestion();
+                    } else {
+                        this.finishLevelGames();
+                    }
+                }, 2200);
+            }
+
+            finishLevelGames() {
+                this.score += this.gameCurrentScore;
+                this.stars += 3;
+                if (!this.completedLevels.includes(this.currentLevelId)) {
+                    this.completedLevels.push(this.currentLevelId);
+                }
+                if (this.currentLevelId === this.unlockedLevel && this.unlockedLevel < 10) {
+                    this.unlockedLevel++;
+                }
+                this.saveState();
+
+                this.hideAllScreens();
+                document.getElementById('screen-level-complete').classList.remove('hidden');
+                document.getElementById('complete-score').textContent = `${this.gameCurrentScore} pts`;
+                document.getElementById('complete-accuracy').textContent = `${(this.gameCurrentScore / 50) * 100}%`;
+                
+                const nextBtn = document.getElementById('btn-next-level');
+                if (this.currentLevelId >= 10) {
+                    nextBtn.style.display = 'none';
+                    document.getElementById('complete-msg').textContent = "Amazing achievement! You have completed all 10 vocabulary levels!";
+                } else {
+                    nextBtn.style.display = 'inline-block';
+                }
+            }
+
+            startNextLevel() {
+                if (this.currentLevelId < 10) {
+                    this.startLevelLearn(this.currentLevelId + 1);
+                } else {
+                    this.showVocabularyHub();
+                }
+            }
+
+            showGrammarHub() {
+                this.hideAllScreens();
+                document.getElementById('screen-grammar-hub').classList.remove('hidden');
+                const container = document.getElementById('grammar-rules-container');
+                container.innerHTML = '';
+
+                grammarRules.forEach(rule => {
+                    const isDone = this.completedGrammar.includes(rule.ruleId);
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-6 rounded-3xl border border-slate-200 shadow-sm card-hover flex flex-col justify-between";
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-xs font-black px-3 py-1 rounded-xl bg-emerald-50 text-emerald-700">Grammar Rule ${rule.ruleId}</span>
+                                <span class="text-lg">${isDone ? '✅' : '📖'}</span>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-lg mb-2">${rule.name}</h4>
+                            <p class="text-slate-600 text-xs font-medium mb-4">${rule.desc}</p>
+                            <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 text-xs text-slate-700 space-y-1 mb-4">
+                                <div><strong>Form:</strong> ${rule.form}</div>
+                                <div><strong>Usage:</strong> ${rule.usage}</div>
+                            </div>
+                        </div>
+                        <button onclick="app.startGrammarPractice(${rule.ruleId})" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs transition shadow">
+                            Practice 30 Questions ▶
+                        </button>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            startGrammarPractice(ruleId) {
+                this.activeGrammarRule = grammarRules.find(r => r.ruleId === ruleId);
+                this.grammarQuestions = this.activeGrammarRule.questions;
+                this.grammarQIndex = 0;
+                this.grammarScore = 0;
+
+                this.hideAllScreens();
+                document.getElementById('screen-grammar-practice').classList.remove('hidden');
+                document.getElementById('grammar-rule-name-header').textContent = this.activeGrammarRule.name;
+                document.getElementById('banner-rule-title').textContent = this.activeGrammarRule.name;
+                document.getElementById('banner-rule-desc').textContent = this.activeGrammarRule.desc;
+                document.getElementById('banner-rule-form').textContent = this.activeGrammarRule.form;
+                document.getElementById('banner-rule-usage').textContent = this.activeGrammarRule.usage;
+
+                this.renderGrammarQuestion();
+            }
+
+            renderGrammarQuestion() {
+                const q = this.grammarQuestions[this.grammarQIndex];
+                document.getElementById('grammar-q-progress').textContent = `Question ${this.grammarQIndex + 1} of 30`;
+                document.getElementById('grammar-score').textContent = this.grammarScore;
+
+                const area = document.getElementById('grammar-question-area');
+                area.innerHTML = `
+                    <div class="text-lg font-black text-slate-900 mb-4">${q.prompt}</div>
+                    <div class="space-y-3" id="grammar-options-list">
+                        ${q.options.map(opt => `
+                            <button onclick="app.selectGrammarOption(this, '${opt.replace(/'/g, "\\'")}')" class="w-full text-left p-4 rounded-2xl border border-slate-200 hover:border-emerald-600 hover:bg-emerald-50 font-medium text-slate-700 transition">
+                                ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                document.getElementById('grammar-feedback-area').classList.add('hidden');
+                document.getElementById('btn-submit-grammar').classList.remove('hidden');
+                this.selectedGrammarOption = null;
+            }
+
+            selectGrammarOption(btn, val) {
+                document.querySelectorAll('#grammar-options-list button').forEach(b => {
+                    b.classList.remove('border-emerald-600', 'bg-emerald-50', 'ring-2', 'ring-emerald-600');
+                });
+                btn.classList.add('border-emerald-600', 'bg-emerald-50', 'ring-2', 'ring-emerald-600');
+                this.selectedGrammarOption = val;
+            }
+
+            submitGrammarAnswer() {
+                if (!this.selectedGrammarOption) {
+                    this.showModalAlert("Please select an option first!");
+                    return;
+                }
+                const q = this.grammarQuestions[this.grammarQIndex];
+                const feedback = document.getElementById('grammar-feedback-area');
+                feedback.classList.remove('hidden');
+
+                const isCorrect = (this.selectedGrammarOption === q.answer);
+                if (isCorrect) {
+                    this.grammarScore += 10;
+                    feedback.className = "p-4 rounded-2xl font-medium text-sm bg-emerald-50 text-emerald-800 border border-emerald-200";
+                    feedback.innerHTML = `✅ Correct! ${q.explanation}`;
+                } else {
+                    feedback.className = "p-4 rounded-2xl font-medium text-sm bg-rose-50 text-rose-800 border border-rose-200";
+                    feedback.innerHTML = `❌ Incorrect. Correct answer: "${q.answer}". ${q.explanation}`;
+                    this.mistakes.push({ type: 'grammar', text: q.prompt, answer: q.answer });
+                }
+
+                document.getElementById('btn-submit-grammar').classList.add('hidden');
+
+                setTimeout(() => {
+                    if (this.grammarQIndex < this.grammarQuestions.length - 1) {
+                        this.grammarQIndex++;
+                        this.renderGrammarQuestion();
+                    } else {
+                        this.finishGrammarPractice();
+                    }
+                }, 2200);
+            }
+
+            finishGrammarPractice() {
+                this.score += this.grammarScore;
+                this.stars += 5;
+                if (!this.completedGrammar.includes(this.activeGrammarRule.ruleId)) {
+                    this.completedGrammar.push(this.activeGrammarRule.ruleId);
+                }
+                this.saveState();
+
+                this.hideAllScreens();
+                document.getElementById('screen-grammar-complete').classList.remove('hidden');
+                document.getElementById('grammar-complete-correct').textContent = `30 / 30`;
+                document.getElementById('grammar-complete-pts').textContent = `${this.grammarScore} pts`;
+            }
+
+            showFlashcardsHub() {
+                this.flashcardIndex = 0;
+                this.isFlashcardFlipped = false;
+                this.hideAllScreens();
+                document.getElementById('screen-flashcards').classList.remove('hidden');
+                this.renderFlashcard();
+            }
+
+            getAllWordsFlat() {
+                let all = [];
+                vocabularyLevels.forEach(l => all.push(...l.words));
+                return all;
+            }
+
+            renderFlashcard() {
+                const words = this.getAllWordsFlat();
+                const item = words[this.flashcardIndex];
+                document.getElementById('fc-word').textContent = item.word;
+                document.getElementById('fc-pronunciation').textContent = item.pronunciation;
+                document.getElementById('fc-meaning').textContent = item.meaning;
+                document.getElementById('fc-example').textContent = `"${item.example}"`;
+                document.getElementById('fc-counter').textContent = `${this.flashcardIndex + 1} / ${words.length}`;
+                
+                const inner = document.getElementById('flashcard-inner');
+                if (this.isFlashcardFlipped) {
+                    inner.style.transform = 'rotateY(180deg)';
+                } else {
+                    inner.style.transform = 'rotateY(0deg)';
+                }
+            }
+
+            flipFlashcard() {
+                this.isFlashcardFlipped = !this.isFlashcardFlipped;
+                const inner = document.getElementById('flashcard-inner');
+                if (this.isFlashcardFlipped) {
+                    inner.style.transform = 'rotateY(180deg)';
+                } else {
+                    inner.style.transform = 'rotateY(0deg)';
+                }
+            }
+
+            nextFlashcard() {
+                const words = this.getAllWordsFlat();
+                if (this.flashcardIndex < words.length - 1) {
+                    this.flashcardIndex++;
+                    this.isFlashcardFlipped = false;
+                    this.renderFlashcard();
+                }
+            }
+
+            prevFlashcard() {
+                if (this.flashcardIndex > 0) {
+                    this.flashcardIndex--;
+                    this.isFlashcardFlipped = false;
+                    this.renderFlashcard();
+                }
+            }
+
+            speakFlashcardWord() {
+                const words = this.getAllWordsFlat();
+                this.speakText(words[this.flashcardIndex].word);
+            }
+
+            showReviewCenter() {
+                this.hideAllScreens();
+                document.getElementById('screen-review-center').classList.remove('hidden');
+                const area = document.getElementById('review-content-area');
+                
+                if (this.mistakes.length === 0) {
+                    area.innerHTML = `
+                        <div class="text-center py-10 space-y-3">
+                            <div class="text-4xl">🎉</div>
+                            <h4 class="font-bold text-slate-800">No mistakes recorded yet!</h4>
+                            <p class="text-slate-500 text-sm">When you answer questions incorrectly during practice or games, they will appear here for smart review.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                area.innerHTML = `
+                    <div class="space-y-4">
+                        ${this.mistakes.map((m, idx) => `
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                                <div>
+                                    <span class="text-xs font-bold uppercase px-2.5 py-1 rounded-md ${m.type === 'vocab' ? 'bg-indigo-50 text-indigo-700' : 'bg-emerald-50 text-emerald-700'}">${m.type}</span>
+                                    <h5 class="font-bold text-slate-900 text-sm mt-2">${m.text}</h5>
+                                    <p class="text-emerald-600 text-xs font-semibold mt-1">Correct Answer: ${m.answer}</p>
+                                </div>
+                                <button onclick="app.removeMistake(${idx})" class="bg-white hover:bg-slate-100 text-slate-600 border border-slate-200 px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm">
+                                    Mark Reviewed ✓
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            removeMistake(idx) {
+                this.mistakes.splice(idx, 1);
+                this.saveState();
+                this.showReviewCenter();
+            }
+
+            showProgressDashboard() {
+                this.hideAllScreens();
+                document.getElementById('screen-progress').classList.remove('hidden');
+                document.getElementById('report-stars').textContent = this.stars;
+                document.getElementById('report-points').textContent = this.score;
+                document.getElementById('report-levels').textContent = `${this.completedLevels.length} / 10`;
+
+                const badgesContainer = document.getElementById('badges-container');
+                const badges = [
+                    { title: "Vocabulary Explorer", desc: "Complete 3 Vocabulary Levels", unlocked: this.completedLevels.length >= 3, icon: "🗺️" },
+                    { title: "Grammar Master", desc: "Complete 2 Grammar Rules", unlocked: this.completedGrammar.length >= 2, icon: "📖" },
+                    { title: "Level Champion", desc: "Complete all 10 Vocabulary Levels", unlocked: this.completedLevels.length >= 10, icon: "🏆" },
+                    { title: "Lifestyles Scholar", desc: "Earn over 300 points", unlocked: this.score >= 300, icon: "🌟" }
+                ];
+
+                badgesContainer.innerHTML = badges.map(b => `
+                    <div class="p-4 rounded-2xl border flex items-center space-x-4 ${b.unlocked ? 'bg-emerald-50/50 border-emerald-200' : 'bg-slate-50 border-slate-200 opacity-60'}">
+                        <div class="text-3xl">${b.icon}</div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">${b.title}</h5>
+                            <p class="text-xs text-slate-500 font-medium">${b.desc}</p>
+                            <span class="text-xs font-bold mt-1 inline-block ${b.unlocked ? 'text-emerald-600' : 'text-slate-400'}">${b.unlocked ? 'Unlocked ✓' : 'Locked'}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            resetProgressPrompt() {
+                if (confirm("Are you sure you want to reset all progress, stars, and scores?")) {
+                    localStorage.clear();
+                    this.stars = 0;
+                    this.score = 0;
+                    this.unlockedLevel = 1;
+                    this.completedLevels = [];
+                    this.completedGrammar = [];
+                    this.mistakes = [];
+                    this.saveState();
+                    this.goHome();
+                    this.showModalAlert("Progress has been successfully reset.");
+                }
+            }
+
+            showModalAlert(msg) {
+                const modal = document.createElement('div');
+                modal.className = "fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4";
+                modal.innerHTML = `
+                    <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center space-y-4 shadow-2xl">
+                        <div class="text-3xl">💡</div>
+                        <h4 class="font-black text-slate-900 text-lg">Notification</h4>
+                        <p class="text-slate-600 text-sm">${msg}</p>
+                        <button onclick="this.closest('.fixed').remove()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-sm transition">
+                            OK
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+        }
+
+        const app = new SuperGoalLearningApp();
+    </script>
+</body>
+</html>
